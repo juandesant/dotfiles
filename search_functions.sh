@@ -30,7 +30,7 @@ function googleit {
 # Result: default browser opens with a Google Maps
 # search on any search terms provided
 function gmap {
-   open "https://www.google.com/maps/preview?q=$*"
+   open "https://encrypted.google.com/maps/preview?q=$*"
 }
 
 # Usage: gmapit
@@ -69,7 +69,7 @@ function maproute {
 # Wikipedia on any search terms provided; 
 # you can even add Bing operators
 function wiki {
-   open "http://en.wikipedia.org/w/index.php?search=$*"
+   open "https://en.wikipedia.org/w/index.php?search=$*"
 }
 
 # Usage: wikit
@@ -89,7 +89,7 @@ function wikit {
 # Result: default browser opens with a Bing query on any
 # search terms provided; you can even add Bing operators
 function bing {
-   open "http://www.bing.com/search?q=$*"
+   open "https://www.bing.com/search?q=$*"
 }
 
 # Usage: bingit
@@ -109,7 +109,7 @@ function bingit {
 # Result: default browser opens with a query 
 # to Wolfram|Alpha on any search terms provided
 function wolfram {
-   open "http://www.wolframalpha.com/input/?i=$*"
+   open "https://www.wolframalpha.com/input/?i=$*"
 }
 
 # Usage: wolframit
