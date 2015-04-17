@@ -11,7 +11,7 @@
 # search terms provided; you can even add Google operators, 
 # such as inurl, site, filetype...
 function google {
-   open "http://www.google.com/search?q=$*"
+   open "https://encrypted.google.com/search?q=$*"
 }
 
 # Usage: googleit
