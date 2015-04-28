@@ -1,3 +1,6 @@
+# Adding fortune
+fortune -s
+
 # environment customizations
 export CLICOLOR=True # to enable color in terminal
 
