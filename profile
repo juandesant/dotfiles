@@ -8,7 +8,7 @@ export CLICOLOR=True # to enable color in terminal
 export PATH=/Applications/TOPCAT/bin:$PATH
 
 # support for Skim's command-line tools
-export PATH=/Applications/Skim.app/Contents/SharedSupport:$PATH
+export PATH=/Applications/TeX/Skim.app/Contents/SharedSupport:$PATH
 
 ## helper functions
 # PDF manual
@@ -56,11 +56,6 @@ vidyoit () {
 # setup MacPorts
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/opt/local/share/man:$MANPATH"
-
-
-# Added by Canopy installer on 2014-05-29
-# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
-VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/j.santander-vela/Library/Enthought/Canopy_64bit/User/bin/activate
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
