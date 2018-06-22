@@ -6,6 +6,25 @@
 # . search_functions.sh
 
 
+# Usage: duck any search terms
+# Result: default browser opens with a query on any
+# search terms provided in DuckDuckGo; you can even add
+# search selector 
+function duck {
+   open "https://duckduckgo.com/?q=$*"
+}
+
+# Usage: duckit
+# Result: default browser opens with a query on the
+# text version of the pasteboard; if you copy a file
+# in the Finder, for instance, the search will be
+# performed on the filename, not on the file content;
+# to search for file content, you can do:
+# cat file | pbcopy ; duckit
+function duckit {
+   duck `pbpaste`
+}
+
 # Usage: google any search terms
 # Result: default browser opens with a query on any
 # search terms provided; you can even add Google operators, 
