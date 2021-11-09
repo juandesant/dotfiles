@@ -31,11 +31,11 @@ alias plz=please
 # PDF manual
 pdfman() {
 	tmp_dir="/tmp"
-	ps_name="$tmp_dir/"man-"$1".ps
-	man -t $1 > $ps_name # get PS version of man page in /tmp
-	if [ -s $ps_name ]
+	ps_name="$tmp_dir/man-$1.ps"
+	man -t "$1" > "$ps_name" # get PS version of man page in /tmp
+	if [ -s "$ps_name" ]
 		then {
-			pdf_name="$tmp_dir/"man-"$1".pdf 
+			pdf_name="$tmp_dir/man-$1.pdf"
 			ps2pdf "$ps_name" "$pdf_name"
 			open -a Preview "$pdf_name"
 		} 
