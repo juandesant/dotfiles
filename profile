@@ -53,7 +53,7 @@ prince_wiki() {
 
 # cdf (cd to file)
 cdf() {
-	dest_dir=`dirname "$1"`
+	dest_dir=$(dirname "$1")
 	cd "$dest_dir"
 }
 
