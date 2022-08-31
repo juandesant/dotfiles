@@ -22,7 +22,7 @@ function duck {
 # to search for file content, you can do:
 # cat file | pbcopy ; duckit
 function duckit {
-   duck `pbpaste`
+   duck $(pbpaste)
 }
 
 # Usage: google any search terms
@@ -41,7 +41,7 @@ function google {
 # to search for file content, you can do:
 # cat file | pbcopy ; googleit
 function googleit {
-   google `pbpaste`
+   google $(pbpaste)
 }
 
 
@@ -56,7 +56,7 @@ function gmap {
 # Result: default browser opens with a Google Maps
 # search on the text version of the pasteboard content
 function gmapit {
-   gmap `pbpaste`
+   gmap $(pbpaste)
 }
 
 
@@ -71,7 +71,7 @@ function map {
 # Result: Apple Maps application opens
 # searching on the text version of the pasteboard content
 function mapit {
-   map `pbpaste`
+   map $(pbpaste)
 }
 
 # Usage: maproute start end
@@ -100,7 +100,7 @@ function wiki {
 # to search for file content, you can do:
 # cat file | pbcopy ; wikit
 function wikit {
-   wiki `pbpaste`
+   wiki $(pbpaste)
 }
 
 
@@ -120,7 +120,7 @@ function bing {
 # to search for file content, you can do:
 # cat file | pbcopy ; bingit
 function bingit {
-   bing `pbpaste`
+   bing $(pbpaste)
 }
 
 
@@ -140,5 +140,5 @@ function wolfram {
 # to search for file content, you can do:
 # cat file | pbcopy ; wolframit
 function wolframit {
-   wolfram `pbpaste`
+   wolfram $(pbpaste)
 }
