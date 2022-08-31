@@ -180,12 +180,12 @@ quit () {
 # Start Vidyo
 vidyoit () {
 	open -a VidyoDesktop
-	open -a 'Google Chrome' `pbpaste`
+	open -a 'Google Chrome' $(pbpaste)
 }
 
 # Test Connectivity using Apple's Captive Portal
 test_tcp ()  {
-  captive_html=`curl -s -L http://captive.apple.com`
+  captive_html=$(curl -s -L http://captive.apple.com)
   lowercase_html=$(echo "$captive_html" |  tr '[:upper:]' '[:lower:]' )
   if [[ $lowercase_html == *"success"* ]]; then
     echo "Connected"
@@ -205,7 +205,7 @@ editw () {
 . ~/.search_functions.sh
 
 # Fortune with a Docker twist
-export FORTUNE=`fortune`
+export FORTUNE=$(fortune)
 docker run docker/whalesay cowsay -W 69 "$FORTUNE"
 #say -v Alex "$FORTUNE" &
 
