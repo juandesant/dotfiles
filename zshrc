@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="fishy"
+ZSH_THEME="agnoster-light" # set by `omz`
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -133,36 +133,36 @@ alias plz=please
 ## helper functions
 # PDF manual
 pdfman() {
-	tmp_dir="/tmp"
-	ps_name="$tmp_dir/man-$1.ps"
-	man -t "$1" > "$ps_name" # get PS version of man page in /tmp
-	if [ -s "$ps_name" ]
-		then {
-			pdf_name="$tmp_dir/man-$1.pdf"
-			ps2pdf "$ps_name" "$pdf_name"
-			open -a Preview "$pdf_name"
-		} 
-	fi
+  tmp_dir="/tmp"
+  ps_name="$tmp_dir/man-$1.ps"
+  man -t "$1" > "$ps_name" # get PS version of man page in /tmp
+  if [ -s "$ps_name" ]
+    then {
+      pdf_name="$tmp_dir/man-$1.pdf"
+      ps2pdf "$ps_name" "$pdf_name"
+      open -a Preview "$pdf_name"
+    } 
+  fi
 }
 
 prince_wiki() {
-	url="https://en.wikipedia.org/wiki/$1"
-	file="$HOME/Downloads/$1.pdf"
-	#wiki_css_url="http://www.princexml.com/howcome/2008/wikipedia/wiki2.css"
-	wiki_css_url="$HOME/wikipedia_prince.css"
-	prince --no-author-style -s $wiki_css_url $url -o $file
-	open -a Preview $file
+  url="https://en.wikipedia.org/wiki/$1"
+  file="$HOME/Downloads/$1.pdf"
+  #wiki_css_url="http://www.princexml.com/howcome/2008/wikipedia/wiki2.css"
+  wiki_css_url="$HOME/wikipedia_prince.css"
+  prince --no-author-style -s $wiki_css_url $url -o $file
+  open -a Preview $file
 }
 
 # cdf (cd to file)
 cdf() {
-	dest_dir=$(dirname "$1")
-	cd "$dest_dir"
+  dest_dir=$(dirname "$1")
+  cd "$dest_dir"
 }
 
 # System Volumes Data size
 dfdata() {
-	df -h /System/Volumes/Data
+  df -h /System/Volumes/Data
 }
 
 # manual in TextMate
@@ -170,17 +170,17 @@ mateman() { man "${1}" | col -b | mate; };
 
 # Quit an OS X application from the command line
 quit () {
-	for app in "$*"; do
-		echo Quitting $app
-		cmd='quit app "'$app'"'
-		osascript -e "$cmd"
-	done
+  for app in "$*"; do
+    echo Quitting $app
+    cmd='quit app "'$app'"'
+    osascript -e "$cmd"
+  done
 }
 
 # Start Vidyo
 vidyoit () {
-	open -a VidyoDesktop
-	open -a 'Google Chrome' $(pbpaste)
+  open -a VidyoDesktop
+  open -a 'Google Chrome' $(pbpaste)
 }
 
 # Test Connectivity using Apple's Captive Portal
@@ -201,8 +201,34 @@ editw () {
   done
 }
 
+# Plist to JSON converter using Python
+plist_to_json() {
+  python3 -c 'import plistlib,sys,json,base64; print(json.dumps(plistlib.loads(sys.stdin.read().encode("utf-8")), default=lambda o:"base64:"+base64.b64encode(o).decode("ascii")))'
+}
+
 # search: sourced from other file
 . ~/.search_functions.sh
+
+# Make Finder aliases
+function finder_path {
+  echo $(echo "$*" | tr "\:\/" "\/\:")
+}
+
+function mfalias {
+  for file in $*; do  
+    original_path=$file
+    alias_path=$(dirname $original_path)
+    alias_name="Alias to $(basename $original_path)"
+    #echo "Aliasing \"$original_path\" at \"$alias_path\" with name \"$alias_name\""
+    osascript -e "tell application \"Finder\"" \
+              -e "  try" \
+              -e "    make new alias to (POSIX file \"$original_path\") at (POSIX file \"$alias_path\") with properties {name:\"$alias_name\"}"\
+              -e "  on error errorMsg"\
+              -e "    make new alias to (POSIX file \"$original_path\") at (path to downloads folder) with properties {name:\"$alias_name\"}"\
+              -e "  end try"\
+              -e "end tell"
+  done
+}
 
 # Fortune with a Docker twist
 export FORTUNE=$(fortune)
@@ -225,3 +251,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+test -e /Users/juandediossantander/.iterm2_shell_integration.zsh && source /Users/juandediossantander/.iterm2_shell_integration.zsh || true
+
+# Hishtory Config:
+export PATH="$PATH:/Users/juandediossantander/.hishtory"
+source /Users/juandediossantander/.hishtory/config.zsh
