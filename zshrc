@@ -209,11 +209,19 @@ plist_to_json() {
 # search: sourced from other file
 . ~/.search_functions.sh
 
-# Make Finder aliases
-function finder_path {
-  echo $(echo "$*" | tr "\:\/" "\/\:")
-}
+# ql and preview aliases
+alias ql='qlmanage -p'
+alias preview='qlmanage -p'
 
+# curl aliases
+alias curl='curl -v -L'
+alias curlo='curl -v -L -O'
+alias curlit='curl -v -L -O $(pbpaste)'
+alias curls='curl -s -L'
+alias curlso='curl -s -L -O'
+alias curlsit='curl -s -L -O $(pbpaste)'
+
+# Make Finder aliases
 function mfalias {
   for file in $*; do  
     original_path=$file
